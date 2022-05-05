@@ -3,7 +3,6 @@ import { Callable } from '../../callable';
 // Example named `export` and different namespace
 export class SendSms implements Callable {
   namespace = 'src/communication/sendSms';
-  type = 'SendSms';
 
   phone: string;
 

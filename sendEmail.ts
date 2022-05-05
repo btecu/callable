@@ -3,7 +3,6 @@ import { Callable } from './callable';
 // Example with `default export`
 export default class SendEmail implements Callable {
   namespace = 'sendEmail';
-  type = 'default';
 
   email: string;
 
