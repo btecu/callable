@@ -4,13 +4,18 @@ import { Callable } from '../../callable';
 export class SendSms implements Callable {
   namespace = 'src/communication/sendSms';
 
-  phone: string;
+  message: string;
+  number: string;
 
-  constructor(phone: string) {
-    this.phone = phone;
+  constructor(message: string, number: string) {
+    this.message = message;
+    this.number = number;
   }
 
-  public invoke() {
-    console.log(`Sending SMS to ${this.phone}`);
+  public async invoke() {
+    console.log(`Sending SMS to ${this.number}`);
+
+    // Fake Twillio call
+    await new Promise((res) => setTimeout(res, 50));
   }
 }

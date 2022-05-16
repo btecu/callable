@@ -10,7 +10,10 @@ export default class SendEmail implements Callable {
     this.email = email;
   }
 
-  public invoke() {
+  public async invoke() {
     console.log(`Sending email to ${this.email}`);
+
+    // Fake Twillio call
+    await new Promise((res) => setTimeout(res, 50));
   }
 }

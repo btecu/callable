@@ -24,7 +24,7 @@ function queueMessage(message: Callable) {
 
 async function main() {
   queueMessage(new SendEmail('john@doe.com'));
-  queueMessage(new SendSms('(555) 123-4567'));
+  queueMessage(new SendSms('Hi', '(555) 123-4567'));
 
   await consumeQueue();
 }

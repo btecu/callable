@@ -1,6 +1,6 @@
 export interface Callable {
   namespace: string;
-  invoke: () => void;
+  invoke: () => Promise<void>;
 }
 
 export interface CallableSerializable extends Callable {
@@ -21,6 +21,6 @@ export async function processMessage(message: string) {
     Cache.set(key, klass);
   }
 
-  let instance = new klass();
-  instance.invoke.call(callable);
+  let instance: Callable = new klass();
+  await instance.invoke.call(callable);
 }
