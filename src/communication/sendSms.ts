@@ -2,8 +2,6 @@ import { Callable } from '../../callable';
 
 // Example named `export` and different namespace
 export class SendSms implements Callable {
-  namespace = 'src/communication/sendSms';
-
   message: string;
   number: string;
 
@@ -13,7 +11,7 @@ export class SendSms implements Callable {
   }
 
   public async invoke() {
-    console.log(`Sending SMS to ${this.number}`);
+    console.log('\x1b[36m', `Sending SMS to ${this.number}`, '\x1b[0m');
 
     // Fake Twillio call
     await new Promise((res) => setTimeout(res, 50));

@@ -1,13 +1,13 @@
 export interface Callable {
-  namespace: string;
   invoke: () => Promise<void>;
 }
 
 export interface CallableSerializable extends Callable {
+  namespace: string;
   type: string;
 }
 
-const Cache = new Map();
+const Cache: Map<string, { new (): Callable }> = new Map();
 
 export async function processMessage(message: string) {
   let callable: CallableSerializable = JSON.parse(message);
@@ -18,9 +18,9 @@ export async function processMessage(message: string) {
     let module = await import(`./${callable.namespace}`);
 
     klass = module[callable.type] ?? module.default;
-    Cache.set(key, klass);
+    Cache.set(key, klass!);
   }
 
-  let instance: Callable = new klass();
+  let instance = new klass!();
   await instance.invoke.call(callable);
 }
